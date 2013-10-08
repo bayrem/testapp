@@ -13,7 +13,19 @@
         <TabControl HorizontalAlignment="Left" Height="438" Margin="0,31,0,0" VerticalAlignment="Top" Width="692">
             <TabItem x:Name="profile_tab" Header="profile" Margin="-2,-1">
                 <Grid x:Name="profile_grid" Background="#FFE5E5E5">
-                    
+                    <Label Content="id :" HorizontalAlignment="Left" Height="30" Margin="37,50,0,0" VerticalAlignment="Top" Width="89"/>
+                    <Label Content="name : " HorizontalAlignment="Left" Height="30" Margin="37,100,0,0" VerticalAlignment="Top" Width="89"/>
+                    <Label Content="last name :" HorizontalAlignment="Left" Height="30" Margin="37,150,0,0" VerticalAlignment="Top" Width="89"/>
+                    <Label Content="password : " HorizontalAlignment="Left" Height="30" Margin="37,200,0,0" VerticalAlignment="Top" Width="89"/>
+                    <Label Content="position :" HorizontalAlignment="Left" Height="30" Margin="37,250,0,0" VerticalAlignment="Top" Width="89"/>
+                    <Label Content="Label" HorizontalAlignment="Left" Height="30" Margin="244,50,0,0" VerticalAlignment="Top" Width="250"/>
+                    <Label Content="Label" HorizontalAlignment="Left" Height="30" Margin="244,100,0,0" VerticalAlignment="Top" Width="250"/>
+                    <Label Content="Label" HorizontalAlignment="Left" Height="30" Margin="244,150,0,0" VerticalAlignment="Top" Width="250"/>
+                    <Label Content="Label" HorizontalAlignment="Left" Height="30" Margin="244,200,0,0" VerticalAlignment="Top" Width="250"/>
+                    <Label Content="Label" HorizontalAlignment="Left" Height="30" Margin="244,250,0,0" VerticalAlignment="Top" Width="250"/>
+                    <TextBlock Margin="299,339,300,41">
+                        <Hyperlink NavigateUri="bug.xaml" Click="click">Edit your profile </Hyperlink>
+                    </TextBlock>
                 </Grid>
             </TabItem>
             <TabItem x:Name="Bug_tab" Header="Bugs">
@@ -21,6 +33,20 @@
                     <TextBlock>
                         <Hyperlink NavigateUri="bug.xaml" Click="click">Signal new bug </Hyperlink>
                     </TextBlock>
+                    <ListView HorizontalAlignment="Left" Height="258" Margin="10,53,0,0" VerticalAlignment="Top" Width="666">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Width="60" Header="id"/>
+                                <GridViewColumn Width="200" Header="Descrition"/>
+                                <GridViewColumn Width="80" Header="Project"/>
+                                <GridViewColumn Width="80" Header="state"/>
+                                <GridViewColumn Width="80" Header="date"/>
+                                <GridViewColumn Width="80" Header="signaled by"/>
+                                <GridViewColumn Width="80" Header="assigned to"/>                                
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+
                 </Grid>
             </TabItem>
             <TabItem x:Name="search_tab" Header="Search">
@@ -36,7 +62,7 @@
             <TabItem x:Name="users_tab" Header="Users">
                 <Grid x:Name="users_grid" Background="#FFE5E5E5">
                     <TextBlock>
-                        <Hyperlink NavigateUri="bug.xaml" Click="click">add new user </Hyperlink>
+                        <Hyperlink NavigateUri="ProfileEditPage.xaml" Click="click">add new user </Hyperlink>
                     </TextBlock>
                 </Grid>
             </TabItem>
