@@ -1,0 +1,35 @@
+﻿<Window x:Name="mnWdw" x:Class="testapp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="buggy" Height="500" Width="350">
+    <Grid Margin="0,0,-8,0" RenderTransformOrigin="0.515,0.517" HorizontalAlignment="Left" Width="350" Height="465" VerticalAlignment="Top">
+        <Menu HorizontalAlignment="Left" Height="26" VerticalAlignment="Top" Width="346" IsMainMenu="True">
+            <MenuItem Header="Edit" Height="26">
+                <MenuItem Header="_Cut" Command="Cut">
+                    <MenuItem.Icon>
+                        <Image Source="C:/Users/BRM/Desktop/My Studies/Visual Studio 2012/Projects/testapp/testapp/Images/cut.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="_Copy" Command="Copy">
+                    <MenuItem.Icon>
+                        <Image Source="C:/Users/BRM/Desktop/My Studies/Visual Studio 2012/Projects/testapp/testapp/Images/copy.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="_Paste" Command="Paste">
+                    <MenuItem.Icon>
+                        <Image Source="C:/Users/BRM/Desktop/My Studies/Visual Studio 2012/Projects/testapp/testapp/Images/paste.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
+               </MenuItem>
+            <MenuItem Header="_Window" />
+            <MenuItem Header="_Help" />
+        </Menu >
+        <Label Content="User name :" HorizontalAlignment="Left" Height="27" Margin="38,106,0,0" VerticalAlignment="Top" Width="151"/>
+        <Label Content="Password :" HorizontalAlignment="Left" Height="30" Margin="38,214,0,0" VerticalAlignment="Top" Width="163"/>
+        <TextBox x:Name="usernameTB" HorizontalAlignment="Left" Height="40" Margin="38,138,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="255"/>
+        <PasswordBox x:Name="PasswordBoxPB" HorizontalAlignment="Left" Height="39" Margin="38,268,0,0" VerticalAlignment="Top" Width="255"/>
+        <Button x:Name="LoginBTN" Content="Log in" HorizontalAlignment="Left" Height="34" Margin="194,342,0,0" VerticalAlignment="Top" Width="99" Click="LoginBTN_Click"/>
+        <Image Name="mainImage" Source="C:\Users\BRM\Pictures\QR git.png" Margin="92,31,91,364" Visibility="Collapsed"> 
+        </Image>
+    </Grid>
+</Window>

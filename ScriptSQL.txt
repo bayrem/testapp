@@ -1,0 +1,569 @@
+--SCRIPT SQL :
+
+--Create Table Role
+--(id_Role int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+--nom_Role varchar(30) NOT NULL);
+
+--INSERT INTO ROLE (nom_Role)
+--VALUES ('Utilisateur');
+
+--INSERT INTO ROLE (nom_Role)
+--VALUES ('Chef de projet');
+
+--INSERT INTO ROLE (nom_Role)
+--VALUES ('Developeur');
+
+--INSERT INTO ROLE (nom_Role)
+--VALUES ('Testeur');
+
+
+--Create Table TypeIntervention
+--(id_TypeIntervention int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+--nom_TypeIntervention varchar(30) NOT NULL);
+
+--INSERT INTO TypeIntervention (nom_TypeIntervention)
+--VALUES ('Bug fonctionnel');
+
+--INSERT INTO TypeIntervention (nom_TypeIntervention)
+--VALUES ('Bug affichage');
+
+--INSERT INTO TypeIntervention (nom_TypeIntervention)
+--VALUES ('Amélioration');
+
+--INSERT INTO TypeIntervention (nom_TypeIntervention)
+--VALUES ('Régréssion');
+
+--Create Table TypeEtat
+--(id_TypeEtat int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+--nom_TypeEtat varchar(30) NOT NULL);
+
+--INSERT INTO TypeEtat(nom_TypeEtat)
+--VALUES ('Crée');
+
+--INSERT INTO TypeEtat(nom_TypeEtat)
+--VALUES ('Assigné');
+
+--INSERT INTO TypeEtat(nom_TypeEtat)
+--VALUES ('Réalisé');
+
+--INSERT INTO TypeEtat(nom_TypeEtat)
+--VALUES ('Testé');
+
+--INSERT INTO TypeEtat(nom_TypeEtat)
+--VALUES ('Cloturé');
+
+
+CREATE Table TypeCodification
+(id_TypeCodification int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+nom_TypeCodification varchar(30) NOT NULL
+);
+
+
+INSERT INTO TypeCodification(nom_TypeCodification)
+VALUES ('Role');
+
+INSERT INTO TypeCodification(nom_TypeCodification)
+VALUES ('TypeIntervention');
+
+INSERT INTO TypeCodification(nom_TypeCodification)
+VALUES ('TypeEtat');
+
+CREATE Table Codification
+(id_Codification int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+nom_Codification varchar(30) NOT NULL,
+id_TypeCodification int NOT NULL,
+FOREIGN KEY(id_TypeCodification) REFERENCES TypeCodification(id_TypeCodification)
+);
+
+INSERT INTO Codification(nom_Codification, id_TypeCodification)
+VALUES ('Utilisateur',1);
+
+INSERT INTO Codification(nom_Codification, id_TypeCodification)
+VALUES ('Chef de projet',1);
+
+INSERT INTO Codification(nom_Codification, id_TypeCodification)
+VALUES ('Developeur',1);
+
+INSERT INTO Codification(nom_Codification, id_TypeCodification)
+VALUES ('Testeur',1);
+
+INSERT INTO Codification(nom_Codification, id_TypeCodification)
+VALUES ('Bug fonctionnel',2);
+
+INSERT INTO Codification(nom_Codification, id_TypeCodification)
+VALUES ('Bug affichage',2);
+
+INSERT INTO Codification(nom_Codification, id_TypeCodification)
+VALUES ('Amélioration',2);
+
+INSERT INTO Codification(nom_Codification, id_TypeCodification)
+VALUES ('Régréssion',2);
+
+INSERT INTO Codification(nom_Codification, id_TypeCodification)
+VALUES ('Crée',3);
+
+INSERT INTO Codification(nom_Codification, id_TypeCodification)
+VALUES ('Assigné',3);
+
+INSERT INTO Codification(nom_Codification, id_TypeCodification)
+VALUES ('Réalisé',3);
+
+INSERT INTO Codification(nom_Codification, id_TypeCodification)
+VALUES ('Testé',3);
+
+INSERT INTO Codification(nom_Codification, id_TypeCodification)
+VALUES ('Cloturé',3);
+
+Create Table Utilisateur
+(id_Utilisateur int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+nom_Utilisateur varchar(30) NOT NULL,
+prenom_Utilisateur varchar(30) NOT NULL,
+pwd_Utilisateur varchar(30) NOT NULL,
+etage_Utilisateur varchar(30),
+bureau_Utilisateur varchar(30),
+id_Codification_Role int, 
+FOREIGN KEY(id_Codification_Role) REFERENCES Codification(id_Codification));
+
+Create Table Etat
+(id_Etat int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+id_Codification_TypeEtat int NOT NULL,
+id_Utilisateur int NOT NULL,
+date_Etat TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
+com_Etat varchar(500),
+FOREIGN KEY (id_Codification_TypeEtat) REFERENCES Codification(id_Codification),
+FOREIGN KEY (id_Utilisateur) REFERENCES Utilisateur(id_Utilisateur)
+);
+
+Create Table Projet
+(id_Projet int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+nom_Projet varchar(30) NOT NULL);
+
+Create Table Assocation_Util_Proj
+(id_Assoc int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+id_Utilisateur int NOT NULL,
+id_Projet int NOT NULL,
+FOREIGN KEY(id_Utilisateur) REFERENCES Utilisateur(id_Utilisateur),
+FOREIGN KEY(id_Projet) REFERENCES Projet(id_Projet)
+);
+
+
+Create Table Intervention
+(id_Intervention int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+nom_Intervention varchar(30) NOT NULL,
+description_Intervention varchar(30) NOT NULL,
+id_Createur int NOT NULL,
+id_Developeur int NOT NULL,
+id_Testeur int NOT NULL,
+id_Codification_TypeIntervention int NOT NULL,
+id_Projet int NOT NULL,
+FOREIGN KEY(id_Createur) REFERENCES Utilisateur(id_Utilisateur),
+FOREIGN KEY(id_Developeur) REFERENCES Utilisateur(id_Utilisateur),
+FOREIGN KEY(id_Testeur) REFERENCES Utilisateur(id_Utilisateur),
+FOREIGN KEY(id_Codification_TypeIntervention) REFERENCES Codification(id_Codification),
+FOREIGN KEY(id_Projet) REFERENCES Projet(id_Projet)
+);
+
+Create Table Association_Inter_Etat
+(id_Assoc int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+id_Intervention int NOT NULL,
+id_Etat int NOT NULL,
+FOREIGN KEY(id_Intervention) REFERENCES Intervention(id_Intervention),
+FOREIGN KEY(id_Etat) REFERENCES Etat(id_Etat)
+);
+
+
+
+--PROCEDURE STOCKE :
+
+
+
+
+
+--UTILISATEUR :
+Create Table Utilisateur
+(id_Utilisateur int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+nom_Utilisateur varchar(30) NOT NULL,
+prenom_Utilisateur varchar(30) NOT NULL,
+pwd_Utilisateur varchar(30) NOT NULL,
+etage_Utilisateur varchar(30),
+bureau_Utilisateur varchar(30),
+id_Role_Utilisateur int, 
+FOREIGN KEY(id_Role_Utilisateur) REFERENCES Role(id_Role));
+
+--SELECT :
+
+CREATE PROCEDURE SelectUtilisateur
+BEGIN
+	SELECT * FROM utilisateur;
+END 
+
+--INSERT :
+CREATE PROCEDURE InsertUtilisateur(nom varchar(30),prenom varchar(30),pwd varchar(30), etage varchar(30),bureau varchar(30), idrole int) 
+SET @nomUtilisateur = nom;
+SET @prenomUtilisateur = prenom;
+SET @pwdUtilisateur = pwd;
+SET @etageUtilisateur = etage;
+SET @bureauUtilisateur = bureau;
+SET @idRoleUtilisateur = idrole;
+BEGIN 
+	INSERT INTO utilisateur(nom_Utilisateur,prenom_Utilisateur, pwd_Utilisateur, etage_Utilisateur, bureau_Utilisateur, id_Role_Utilisateur)
+	VALUES (@nomUtilisateur ,@prenomUtilisateur, @etageUtilisateur, @bureauUtilisateur, @idRoleUtilisateur)
+END
+
+--UPDATE :
+
+CREATE PROCEDURE UpdateUtilisateur(
+
+
+
+--DELETE :
+CREATE PROCEDURE DeleteUtilisateur(id int)
+SET @idUtilisateur = id;
+BEGIN
+	DELETE FROM Utilisateur
+	WHERE id_Utilisateur = idUtilisateur;
+END
+	
+
+--SELECTBYID:
+CREATE PROCEDURE SelectUtilisateurById(id int)
+SET @idUtilisateur = id;
+BEGIN
+	SLECT * FROM Utilisateur
+	WHERE id_Utilisateur = @idUtilisateur;
+END
+
+
+
+
+--ROLE :
+
+--Create Table Role
+--(id_Role int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+--nom_Role varchar(30) NOT NULL);
+
+--SELECT :
+
+--CREATE PROCEDURE SelectRole
+--BEGIN
+--	SELECT * FROM role;
+--END
+
+--INSERT :
+
+--CREATE PROCEDURE InsertRole(nom varchar(30))
+--SET @nomRole = nom;
+--BEGIN
+--	INSERT INTO role(nom_Role)
+--	VALUES (@nomRole);
+--END
+
+--UPDATE :
+--CREATE PROCEDURE UpdateRole(id int, nom varchar(30))
+--SET @idRole = id;
+--SET @nomRole = nom;
+--BEGIN 
+--	UPDATE role
+--	SET nom_Role= @nomRole
+--	WHERE id_Role = @idRole;
+--END 
+
+
+--DELETE :
+--CREATE PROCEDURE DeleteRole(id int)
+--SET @idRole = id;
+--BEGIN
+--	DELETE FROM Role
+--	WHERE id_Role = @idRole;
+--END 
+
+
+
+
+
+--PROJET :
+
+Create Table Projet
+(id_Projet int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+nom_Projet varchar(30) NOT NULL);
+
+--SELECT:
+
+CREATE PROCEDURE SelectProjet
+BEGIN
+	SELECT * FROM projet;
+END
+
+
+--INSERT :
+
+CREATE PROCEDURE InsertProjet(nom varchar(30))
+SET @nomProjet = nom;
+BEGIN
+	INSERT INTO projet(nom_Projet)
+	VALUES(@nomProjet);
+END
+
+
+--UPDATE :
+
+CREATE PROCEDURE UpdateProjet(id int,nom varchar(30))
+SET @idProjet = id;
+SET @nomProjet = nom;
+BEGIN
+	UPDATE projet
+	SET nom_Projet = @nomProjet
+	WHERE id_Projet = @idProjet;
+END
+
+--DELETE :
+
+CREATE PROCEDURE DeleteProjet(id int)
+SET @idProjet = id;
+BEGIN
+	DELETE FROM projet
+	WHERE id_Projet = @idProjet;
+END
+
+
+--SELECTBYID :
+CREATE PROCEDURE SelectProjetById(id int)
+SET @idProjet = id;
+BEGIN
+	SELECT * FROM Projet
+	WHERE id_Projet = @idProjet;
+END
+
+--TypeCodification :
+
+CREATE Table TypeCodification
+(id_TypeCodification int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+nom_TypeCodification varchar(30) NOT NULL
+);
+
+--SELECT :
+CREATE PROCEDURE SelectTypeCodification
+BEGIN
+	SELECT * FROM TypeCodification;
+END
+
+--INSERT :
+CREATE PROCEDURE InsertTypeCodification(nom varchar(30))
+SET @nomTypeCodification = nom;
+BEGIN
+	INSERT INTO typecodification(nom_TypeCodification)
+	VALUES(@nomTypeCodification);
+END
+
+--UPDATE :
+CREATE PROCEDURE UpdateTypeCodification(id int, nom varchar(30))
+SET @idTypeCodification = id;
+SET @nomTypeCodification = nom;
+BEGIN
+	UPDATE TypeCodification
+	SET nom_TypeCodification = @nomTypeCodification
+	WHERE id_TypeCodification = @idTypeCodification;
+END
+
+--DELETE:
+CREATE PROCEDURE DeleteTypeCodification(id int)
+SET @idTypeCodification = id;
+BEGIN
+	DELETE FROM TypeCodification
+	WHERE id_TypeCodification = @idTypeCodification;
+END
+
+
+--Codification :
+
+CREATE Table Codification
+(id_Codification int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+nom_Codification varchar(30) NOT NULL,
+id_TypeCodification int NOT NULL,
+FOREIGN KEY(id_TypeCodification) REFERENCES TypeCodification(id_TypeCodification)
+);
+
+--SELECT :
+CREATE PROCEDURE SelectCodification
+BEGIN
+	SELECT * FROM Codification;
+END
+
+--INSERT :
+CREATE PROCEDURE InsertCodification(nom varchar(30), idType int)
+SET @idTypeCodification = idType;
+SET @nomCodification = nom;
+BEGIN
+	INSERT INTO Codification(nom_Codification,id_TypeCodification)
+	VALUES(@nomCodification,@idTypeCodification);
+END
+
+--UPDATE:
+CREATE PROCEDURE UpdateCodification(id int ,nom varchar(30), idType int)
+SET @idCodification = id;
+SET @idTypeCodification = idType;
+SET @nomCodification = nom;
+BEGIN 
+	UPDATE Codification
+	SET nom_Codification = @nomCodification, idTypeCodification = idType;
+	WHERE id_Codification = @idCodification;
+END
+
+--DELETE:
+CREATE PROCEDURE DeleteCodification(id int)
+SET @idCodification = id;
+BEGIN
+	DELETE FROM Codification
+	WHERE id_Codification = @idCodification;
+END
+
+--SELECTBYID:
+CREATE PROCEDURE SelectCodificationById(id int)
+SET @idCodification = id;
+BEGIN
+	SELECT * FROM Codification
+	WHERE id_Codification = @idCodification;
+END
+
+--Etat :
+
+Create Table Etat
+(id_Etat int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+id_Codification_TypeEtat int NOT NULL,
+id_Utilisateur int NOT NULL,
+date_Etat TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
+com_Etat varchar(500),
+FOREIGN KEY (id_Codification_TypeEtat) REFERENCES Codification(id_Codification),
+FOREIGN KEY (id_Utilisateur) REFERENCES Utilisateur(id_Utilisateur)
+);
+
+--SELECT :
+CREATE PROCEDURE SelectEtat
+BEGIN
+	SELECT * FROM Etat;
+END
+
+--INSERT :
+CREATE PROCEDURE InserEtat(idCodif int, idUser int, com varchar(500))
+SET @idCodification = idCodif;
+SET @idUtilisateur = idUser;
+SET @comEtat = com;
+BEGIN
+	INSERT INTO Etat(id_Codification,id_Utilisateur,com_Etat)
+	VALUES(@idCodification,@idUtilisateur,@comEtat);
+END
+
+--UPDATE :
+CREATE PROCEDURE UpdateEtat(id int, idCodif int, idUser int, com varchar(500))
+SET @idEtat = id;
+SET @idCodification = idCodif;
+SET @idUtilisateur = idUser;
+SET @comEtat = com;
+BEGIN
+	UPDATE Etat
+	SET id_Codification = @idCodification, id_Utilisateur = @idUtilisateur, com_Etat = @comEtat
+	WHERE id_Etat = idEtat;
+END
+
+
+--DELETE:
+CREATE PROCEDURE DeleteEtat(id int)
+SET @idEtat =id;
+BEGIN
+	DELETE FROM Etat
+	WHERE id_Etat = @idEtat;
+END
+
+--Intervention:
+
+Create Table Intervention
+(id_Intervention int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+nom_Intervention varchar(30) NOT NULL,
+description_Intervention varchar(30) NOT NULL,
+id_Createur int NOT NULL,
+id_Developeur int NOT NULL,
+id_Testeur int NOT NULL,
+id_Codification_TypeIntervention int NOT NULL,
+id_Projet int NOT NULL,
+FOREIGN KEY(id_Createur) REFERENCES Utilisateur(id_Utilisateur),
+FOREIGN KEY(id_Developeur) REFERENCES Utilisateur(id_Utilisateur),
+FOREIGN KEY(id_Testeur) REFERENCES Utilisateur(id_Utilisateur),
+FOREIGN KEY(id_Codification_TypeIntervention) REFERENCES Codification(id_Codification),
+FOREIGN KEY(id_Projet) REFERENCES Projet(id_Projet)
+);
+
+
+--SELECT :
+CREATE PROCEDURE SelectIntervention
+BEGIN
+	SELECt * FROM Intervention;
+END
+
+--INSERT :
+CREATE PROCEDURE InsertIntervention(nom varchar(30), desc varchar(30), idC int, idD int, idT int, idCodif int, idProjet int)
+SET @nomIntervention = nom;
+SET @descriptionIntervention = desc;
+SET @idCreateur = idC;
+SET @idDevelopeur = idD;
+SET @idTesteur = idT;
+SET @idCodification = idCodif;
+SET @idProjet = idProjet;
+BEGIN
+	INSERT INTO Intervention(nom_Intervention,description_Intervention,id_Createur,id_Developeur,id_Testeur,id_Codification,id_Projet)
+	VALUEs(@nomIntervention, @descriptionIntervention, @idCreateur, @idDevelopeur, @idTesteur, @idCodification, @idProjet);
+END
+
+--UPDATE :
+CREATE PROCEDURE UpdateIntervention(id int,nom varchar(30), desc varchar(30), idC int, idD int, idT int, idCodif int, idProjet int)
+SET @idIntervention = id;
+SET @nomIntervention = nom;
+SET @descriptionIntervention = desc;
+SET @idCreateur = idC;
+SET @idDevelopeur = idD;
+SET @idTesteur = idT;
+SET @idCodification = idCodif;
+SET @idProjet = idProjet;
+BEGIN
+	UPDATE Intervention
+	SET nom_Intervention = @nomIntervention, description_Intervention = @descriptionIntervention, _
+	id_Createur = @idCreateur, id_Developeur = @idDevelopeur, id_Tester = @idTester, id_Codification = @idCodification id_Projet = @idProjet
+	WHERE id_Intervention = @idIntervention;
+END
+
+
+--DELETE :
+CREATE PROCEDURE DeleteIntervention(id int)
+SET @idIntervention = id;
+BEGIN
+	DELETE FROM Intervention
+	WHERE id_Intervention = @idIntervention;
+END
+
+
+--SELECTBYID :
+CREATE PROCEDURE SelectInterventionByID(id int)
+SET @idIntervention = id;
+BEGIN
+	SELECT * FROM Intervention
+	WHERE id_Intervention = @idIntervention;
+END
+
+
+--SELECTINTERVENTIONFORGRID
+CREATE PROCEDURE SelectInterventionForGrid()
+BEGIN
+	Select inte.id_Intervention, inte.nom_Intervention, inte.description_Intervention, proj.nom_Projet, codif.nom_Codification, userC.nom_Utilisateur as Createur, userD.nom_Utilisateur as Developeur, userT.nom_Utilisateur as Testeur
+ 	FROM Intervention as inte
+        INNER JOIN Projet as proj ON inte.id_Projet = proj.id_Projet
+        INNER JOIN Codification as codif ON inte.id_Codification_TypeIntervention = codif.id_Codification 
+        INNER JOIN Utilisateur as userC ON inte.id_Createur = userC.id_Utilisateur 
+        INNER JOIN Utilisateur as userD ON inte.id_Developeur = userD.id_Utilisateur
+        INNER JOIN Utilisateur as userT on inte.id_Testeur = userT.id_Utilisateur
+
+END
+
+--SELECTINTERVENTIONETATFORLIST
+CREATE PROCEDURE SelectionEtatByIdIntervention()
+BEGIN
+	Select 
+END
