@@ -34,6 +34,10 @@ namespace testapp
         {
             InitializeComponent();
             //lbl1.Content = "Bonjour " + user;
+            if (!pos_lbl.Content.Equals("manager"))
+            {
+                bug_txt_blk.Visibility = System.Windows.Visibility.Collapsed;
+            }
            
         }
 
@@ -43,11 +47,11 @@ namespace testapp
             newMainWindow.Show();
         }
 
-        private void click(object sender, RoutedEventArgs e)
+        /*private void click(object sender, RoutedEventArgs e)
         {
             var bug = new BugPage();
             this.NavigationService.Navigate(bug);
-        }
+        }*/
 
 
     }

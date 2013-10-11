@@ -4,7 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d"
-	Title="MainPage" Height="470" Width="692.5">
+	Title="MainPage" Height="470" Width="700">
 
     <Grid>
         <Menu HorizontalAlignment="Left" Height="31" VerticalAlignment="Top" Width="692">
@@ -18,25 +18,27 @@
                     <Label Content="last name :" HorizontalAlignment="Left" Height="30" Margin="37,150,0,0" VerticalAlignment="Top" Width="89"/>
                     <Label Content="password : " HorizontalAlignment="Left" Height="30" Margin="37,200,0,0" VerticalAlignment="Top" Width="89"/>
                     <Label Content="position :" HorizontalAlignment="Left" Height="30" Margin="37,250,0,0" VerticalAlignment="Top" Width="89"/>
-                    <Label Content="Label" HorizontalAlignment="Left" Height="30" Margin="244,50,0,0" VerticalAlignment="Top" Width="250"/>
-                    <Label Content="Label" HorizontalAlignment="Left" Height="30" Margin="244,100,0,0" VerticalAlignment="Top" Width="250"/>
-                    <Label Content="Label" HorizontalAlignment="Left" Height="30" Margin="244,150,0,0" VerticalAlignment="Top" Width="250"/>
-                    <Label Content="Label" HorizontalAlignment="Left" Height="30" Margin="244,200,0,0" VerticalAlignment="Top" Width="250"/>
-                    <Label Content="Label" HorizontalAlignment="Left" Height="30" Margin="244,250,0,0" VerticalAlignment="Top" Width="250"/>
+                    <Label x:Name="id_lbl" Content="Label" HorizontalAlignment="Left" Height="30" Margin="244,50,0,0" VerticalAlignment="Top" Width="250"/>
+                    <Label x:Name="name_lbl" Content="Label" HorizontalAlignment="Left" Height="30" Margin="244,100,0,0" VerticalAlignment="Top" Width="250"/>
+                    <Label x:Name="lst_nm_lbl" Content="Label" HorizontalAlignment="Left" Height="30" Margin="244,150,0,0" VerticalAlignment="Top" Width="250"/>
+                    <Label x:Name="pswd_lbl" Content="Label" HorizontalAlignment="Left" Height="30" Margin="244,200,0,0" VerticalAlignment="Top" Width="250"/>
+                    <Label x:Name="pos_lbl" Content="manager" HorizontalAlignment="Left" Height="30" Margin="244,250,0,0" VerticalAlignment="Top" Width="250"/>
                     <TextBlock Margin="299,339,300,41">
-                        <Hyperlink NavigateUri="bug.xaml" Click="click">Edit your profile </Hyperlink>
+                        <Hyperlink NavigateUri="ProfileEditPage.xaml">Edit your profile </Hyperlink>
                     </TextBlock>
                 </Grid>
             </TabItem>
             <TabItem x:Name="Bug_tab" Header="Bugs">
                 <Grid x:Name="bug_grid" Background="#FFE5E5E5">
-                    <TextBlock>
-                        <Hyperlink NavigateUri="bug.xaml" Click="click">Signal new bug </Hyperlink>
+                    <TextBlock x:Name="bug_txt_blk">
+                        <Hyperlink NavigateUri="bugPage.xaml">Signal new bug </Hyperlink>
                     </TextBlock>
-                    <ListView HorizontalAlignment="Left" Height="258" Margin="10,53,0,0" VerticalAlignment="Top" Width="666">
+                    <ListView HorizontalAlignment="Left" Height="129" Margin="10,50,0,0" VerticalAlignment="Top" Width="666">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Width="60" Header="id"/>
+                                <GridViewColumn Width="60" Header="id">
+                                    
+                                </GridViewColumn>
                                 <GridViewColumn Width="200" Header="Descrition"/>
                                 <GridViewColumn Width="80" Header="Project"/>
                                 <GridViewColumn Width="80" Header="state"/>
@@ -50,20 +52,58 @@
                 </Grid>
             </TabItem>
             <TabItem x:Name="search_tab" Header="Search">
-                <Grid x:Name="search_grid" Background="#FFE5E5E5"/>
+                <Grid x:Name="search_grid" Background="#FFE5E5E5">
+                    <Label Content="Search by id :" HorizontalAlignment="Left" Height="29" Margin="62,39,0,0" VerticalAlignment="Top" Width="129"/>
+                    <TextBox HorizontalAlignment="Left" Height="29" Margin="235,39,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="239"/>
+                    <Button Content="Search" HorizontalAlignment="Left" Height="29" Margin="506,39,0,0" VerticalAlignment="Top" Width="101"/>
+                    <ListBox HorizontalAlignment="Left" Height="133" Margin="10,140,0,0" VerticalAlignment="Top" Width="96"/>
+                    <Label Content="Reported by : &#xD;&#xA;(tester)" HorizontalAlignment="Left" Height="42" Margin="10,93,0,0" VerticalAlignment="Top" Width="95"/>
+                    <Label Content="Type : " HorizontalAlignment="Left" Height="42" Margin="124,98,0,0" VerticalAlignment="Top" Width="107"/>
+                    <Label Content="Project : " HorizontalAlignment="Left" Height="42" Margin="245,98,0,0" VerticalAlignment="Top" Width="109"/>
+                    <Label Content="Assigned to :" HorizontalAlignment="Left" Height="42" Margin="363,98,0,0" VerticalAlignment="Top" Width="110"/>
+                    <ListBox HorizontalAlignment="Left" Height="15" Margin="191,145,0,0" VerticalAlignment="Top" Width="0"/>
+                    <ListBox HorizontalAlignment="Left" Height="133" Margin="124,140,0,0" VerticalAlignment="Top" Width="107"/>
+                    <ListBox HorizontalAlignment="Left" Height="133" Margin="245,140,0,0" VerticalAlignment="Top" Width="109"/>
+                    <ListBox HorizontalAlignment="Left" Height="133" Margin="363,140,0,0" VerticalAlignment="Top" Width="106"/>
+                    <Label Content="Status : " HorizontalAlignment="Left" Height="42" Margin="489,98,0,0" VerticalAlignment="Top" Width="103"/>
+                    <ListBox HorizontalAlignment="Left" Height="133" Margin="489,140,0,0" VerticalAlignment="Top" Width="103"/>
+                    <Button Content="Search" HorizontalAlignment="Left" Height="32" Margin="276,327,0,0" VerticalAlignment="Top" Width="123"/>
+                </Grid>
             </TabItem>
             <TabItem x:Name="project_tab" Header="Projects">
                 <Grid x:Name="project_grid" Background="#FFE5E5E5">
-                    <TextBlock>
-                        <Hyperlink NavigateUri="bug.xaml" Click="click">add new project </Hyperlink>
+                    <TextBlock Name="txtblk">
+                        <Hyperlink NavigateUri="AddProjectPage.xaml">add new project </Hyperlink>
                     </TextBlock>
+                    <ComboBox HorizontalAlignment="Left" Height="26" Margin="10,109,0,0" VerticalAlignment="Top" Width="258"/>
+                    <Label Content="Projects :" HorizontalAlignment="Left" Height="32" Margin="10,62,0,0" VerticalAlignment="Top" Width="117"/>
+                    <Label Content="id :" HorizontalAlignment="Left" Height="32" Margin="10,172,0,0" VerticalAlignment="Top" Width="69"/>
+                    <Label Content="Label" HorizontalAlignment="Left" Height="32" Margin="139,172,0,0" VerticalAlignment="Top" Width="184"/>
+                    <Label Content="Project name :" HorizontalAlignment="Left" Height="29" Margin="10,209,0,0" VerticalAlignment="Top" Width="91"/>
+                    <Label Content="Label" HorizontalAlignment="Left" Height="29" Margin="139,209,0,0" VerticalAlignment="Top" Width="189"/>
+                    <Label Content="Assigned personnel : " HorizontalAlignment="Left" Height="32" Margin="380,62,0,0" VerticalAlignment="Top" Width="236"/>
+                    <ComboBox HorizontalAlignment="Left" Height="26" Margin="380,109,0,0" VerticalAlignment="Top" Width="236"/>
                 </Grid>
             </TabItem>
             <TabItem x:Name="users_tab" Header="Users">
                 <Grid x:Name="users_grid" Background="#FFE5E5E5">
                     <TextBlock>
-                        <Hyperlink NavigateUri="ProfileEditPage.xaml" Click="click">add new user </Hyperlink>
+                        <Hyperlink NavigateUri="AddUserPage.xaml">add new user </Hyperlink>
                     </TextBlock>
+                    <ListView HorizontalAlignment="Left" Height="129" Margin="10,50,0,0" VerticalAlignment="Top" Width="666">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Width="60" Header="id">
+
+                                </GridViewColumn>
+                                <GridViewColumn Width="150" Header="Last name"/>
+                                <GridViewColumn Width="150" Header="Name"/>
+                                <GridViewColumn Width="150" Header="position"/>
+                                <GridViewColumn Width="150" Header="Project assigned to"/>
+                                
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
                 </Grid>
             </TabItem>
         </TabControl>
