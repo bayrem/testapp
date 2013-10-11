@@ -32,7 +32,9 @@ namespace testapp
             {
                 if (usernameTB.Text.Equals("Bayrem") && PasswordBoxPB.Password.Equals("bibo"))
                 {
-                    var newWindow = new Window1(usernameTB.Text);
+                    User.name = usernameTB.Text;
+                    User.password = PasswordBoxPB.Password;
+                    var newWindow = new Window1();
                     newWindow.Show();
                     this.Close();
                     /*

@@ -72,7 +72,7 @@
             </TabItem>
             <TabItem x:Name="project_tab" Header="Projects">
                 <Grid x:Name="project_grid" Background="#FFE5E5E5">
-                    <TextBlock Name="txtblk">
+                    <TextBlock x:Name="prjct_txt_blk">
                         <Hyperlink NavigateUri="AddProjectPage.xaml">add new project </Hyperlink>
                     </TextBlock>
                     <ComboBox HorizontalAlignment="Left" Height="26" Margin="10,109,0,0" VerticalAlignment="Top" Width="258"/>
@@ -87,7 +87,7 @@
             </TabItem>
             <TabItem x:Name="users_tab" Header="Users">
                 <Grid x:Name="users_grid" Background="#FFE5E5E5">
-                    <TextBlock>
+                    <TextBlock x:Name="user_txt_blk">
                         <Hyperlink NavigateUri="AddUserPage.xaml">add new user </Hyperlink>
                     </TextBlock>
                     <ListView HorizontalAlignment="Left" Height="129" Margin="10,50,0,0" VerticalAlignment="Top" Width="666">

@@ -21,13 +21,11 @@ namespace testapp
     public partial class Window1 : NavigationWindow
     {
 
-        String user;
 
-        public Window1(String user)
+        public Window1()
         {
             InitializeComponent();
-            this.user = user;
-            var mainpg = new MainPage(user);
+            
         }
 
         

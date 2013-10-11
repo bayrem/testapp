@@ -21,22 +21,18 @@ namespace testapp
     public partial class MainPage : Page
     {
 
-        private String user;
-
-        public MainPage(String user)
-        {
-            InitializeComponent();
-            this.user = user;
-            //lbl1.Content = "Bonjour " + user;
-        }
 
         public MainPage()
         {
             InitializeComponent();
-            //lbl1.Content = "Bonjour " + user;
+
+            name_lbl.Content = User.name;
+            pswd_lbl.Content = User.password;
             if (!pos_lbl.Content.Equals("manager"))
             {
-                bug_txt_blk.Visibility = System.Windows.Visibility.Collapsed;
+                //bug_txt_blk.Visibility = System.Windows.Visibility.Collapsed;
+                prjct_txt_blk.Visibility = System.Windows.Visibility.Collapsed;
+                user_txt_blk.Visibility = System.Windows.Visibility.Collapsed;
             }
            
         }
