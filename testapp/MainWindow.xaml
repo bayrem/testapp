@@ -29,7 +29,5 @@
         <TextBox x:Name="usernameTB" HorizontalAlignment="Left" Height="40" Margin="38,138,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="255"/>
         <PasswordBox x:Name="PasswordBoxPB" HorizontalAlignment="Left" Height="39" Margin="38,268,0,0" VerticalAlignment="Top" Width="255"/>
         <Button x:Name="LoginBTN" Content="Log in" HorizontalAlignment="Left" Height="34" Margin="194,342,0,0" VerticalAlignment="Top" Width="99" Click="LoginBTN_Click"/>
-        <Image Name="mainImage" Source="C:\Users\BRM\Pictures\QR git.png" Margin="92,31,91,364" Visibility="Collapsed"> 
-        </Image>
     </Grid>
 </Window>

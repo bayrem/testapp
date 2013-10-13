@@ -22,7 +22,7 @@
                     <Label x:Name="name_lbl" Content="Label" HorizontalAlignment="Left" Height="30" Margin="244,100,0,0" VerticalAlignment="Top" Width="250"/>
                     <Label x:Name="lst_nm_lbl" Content="Label" HorizontalAlignment="Left" Height="30" Margin="244,150,0,0" VerticalAlignment="Top" Width="250"/>
                     <Label x:Name="pswd_lbl" Content="Label" HorizontalAlignment="Left" Height="30" Margin="244,200,0,0" VerticalAlignment="Top" Width="250"/>
-                    <Label x:Name="pos_lbl" Content="manager" HorizontalAlignment="Left" Height="30" Margin="244,250,0,0" VerticalAlignment="Top" Width="250"/>
+                    <Label x:Name="pos_lbl" Content="Label" HorizontalAlignment="Left" Height="30" Margin="244,250,0,0" VerticalAlignment="Top" Width="250"/>
                     <TextBlock Margin="299,339,300,41">
                         <Hyperlink NavigateUri="ProfileEditPage.xaml">Edit your profile </Hyperlink>
                     </TextBlock>
@@ -31,9 +31,9 @@
             <TabItem x:Name="Bug_tab" Header="Bugs">
                 <Grid x:Name="bug_grid" Background="#FFE5E5E5">
                     <TextBlock x:Name="bug_txt_blk">
-                        <Hyperlink NavigateUri="bugPage.xaml">Signal new bug </Hyperlink>
+                        <Hyperlink NavigateUri="AddbugPage.xaml">Signal new bug </Hyperlink>
                     </TextBlock>
-                    <ListView HorizontalAlignment="Left" Height="129" Margin="10,50,0,0" VerticalAlignment="Top" Width="666">
+                    <ListView x:Name="bug_lstview" HorizontalAlignment="Left" Height="129" Margin="10,50,0,0" VerticalAlignment="Top" Width="666">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Width="60" Header="id">
@@ -90,19 +90,8 @@
                     <TextBlock x:Name="user_txt_blk">
                         <Hyperlink NavigateUri="AddUserPage.xaml">add new user </Hyperlink>
                     </TextBlock>
-                    <ListView HorizontalAlignment="Left" Height="129" Margin="10,50,0,0" VerticalAlignment="Top" Width="666">
-                        <ListView.View>
-                            <GridView>
-                                <GridViewColumn Width="60" Header="id">
-
-                                </GridViewColumn>
-                                <GridViewColumn Width="150" Header="Last name"/>
-                                <GridViewColumn Width="150" Header="Name"/>
-                                <GridViewColumn Width="150" Header="position"/>
-                                <GridViewColumn Width="150" Header="Project assigned to"/>
-                                
-                            </GridView>
-                        </ListView.View>
+                    <ListView x:Name="usr_lstview" HorizontalAlignment="Left" Height="129" Margin="10,50,0,0" VerticalAlignment="Top" Width="666">
+                        
                     </ListView>
                 </Grid>
             </TabItem>

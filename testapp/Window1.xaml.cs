@@ -21,6 +21,7 @@ namespace testapp
     public partial class Window1 : NavigationWindow
     {
 
+        public string user = User.name;
 
         public Window1()
         {

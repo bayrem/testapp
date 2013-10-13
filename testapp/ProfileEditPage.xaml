@@ -14,13 +14,13 @@
             <Label Content="last name :" HorizontalAlignment="Left" Height="30" Margin="37,150,0,0" VerticalAlignment="Top" Width="89"/>
             <Label Content="password : " HorizontalAlignment="Left" Height="30" Margin="37,200,0,0" VerticalAlignment="Top" Width="89"/>
             <Label Content="position :" HorizontalAlignment="Left" Height="30" Margin="37,250,0,0" VerticalAlignment="Top" Width="89"/>
-            <TextBox HorizontalAlignment="Left" Height="30" Margin="244,100,0,0" VerticalAlignment="Top" Width="250"/>
-            <TextBox HorizontalAlignment="Left" Height="30" Margin="244,150,0,0" VerticalAlignment="Top" Width="250"/>
-            <TextBox HorizontalAlignment="Left" Height="30" Margin="244,200,0,0" VerticalAlignment="Top" Width="250"/>
+            <TextBox x:Name="profile_edit_nameTb" HorizontalAlignment="Left" Height="30" Margin="244,100,0,0" VerticalAlignment="Top" Width="250"/>
+            <TextBox x:Name="profile_edit_lnTb" HorizontalAlignment="Left" Height="30" Margin="244,150,0,0" VerticalAlignment="Top" Width="250"/>
+            <TextBox x:Name="profile_edit_passTb" HorizontalAlignment="Left" Height="30" Margin="244,200,0,0" VerticalAlignment="Top" Width="250"/>
             <Button Content="Send" HorizontalAlignment="Left" Height="27" Margin="318,379,0,0" VerticalAlignment="Top" Width="85" Click="Button_Click_Send"/>
             <Button Content="Abort" HorizontalAlignment="Left" Height="27" Margin="432,379,0,0" VerticalAlignment="Top" Width="85" Click="Button_Click_Abort"/>
-            <Label Content="Label" HorizontalAlignment="Left" Height="30" Margin="244,50,0,0" VerticalAlignment="Top" Width="250"/>
-            <Label Content="Label" HorizontalAlignment="Left" Height="30" Margin="243,250,0,0" VerticalAlignment="Top" Width="251"/>
+            <Label x:Name="profile_edit_idLbl" Content="Label" HorizontalAlignment="Left" Height="30" Margin="244,50,0,0" VerticalAlignment="Top" Width="250"/>
+            <Label x:Name="profile_edit_posLbl" Content="Label" HorizontalAlignment="Left" Height="30" Margin="243,250,0,0" VerticalAlignment="Top" Width="251"/>
 
         </Grid>
     </Grid>
